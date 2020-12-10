@@ -1,0 +1,99 @@
+body{
+    padding: 0px;
+    margin: 0px;
+   
+}
+* {
+    box-sizing: border-box;
+  }
+  
+
+p{
+    color: cornsilk;
+    text-align: center;
+    font-weight: 300;
+    font-size: 80%;
+    margin-top: 10px;
+}
+h2 {
+    font-size: 120%;
+    text-align: center;
+}
+.temp{
+    font-size: 170%;
+}
+.mainContainer{
+    padding: 10%;
+    margin: 15px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    color: cornsilk;
+
+}
+
+.results{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    
+}
+.today_weather{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+
+}
+.card1{
+    display: flex;
+    flex-direction: column;
+    border: rgba(15, 7, 7, 0.082) 2px solid;
+    border-radius: 5px;;
+    padding: 10px;
+    margin: 5px;
+    background-color: rgba(7, 7, 7, 0.253);
+
+}
+
+.card2{
+    display: flex;
+    flex-direction: column;
+    border: rgba(15, 7, 7, 0.082) 2px solid;
+    border-radius: 5px;;
+    padding: 10px;
+    margin: 5px;
+    background-color: rgba(7, 7, 7, 0.253);
+}
+.card
+ {
+    background-color: rgba(219, 200, 204, 0);
+}
+.fa-search{
+    position: relative;
+    z-index: 1;
+    margin-left: 150%;
+    opacity: 30%;
+    
+}
+#search_id{
+    padding-left: 10%;
+    position: relative;
+    height: auto;
+    z-index: 0;
+}
+.row{
+    background-color: rgba(12, 82, 82, 0);
+}
+.icon{
+text-align: center;
+}
+.icon_img{
+    text-align: center;
+    height: auto;
+    width: 60%;
+}
+
