@@ -20,36 +20,35 @@
       base: "https://api.openweathermap.org/data/2.5/"
     }
 
-    let dateBuilder = (currentDate) => {
+    let dateBuilderForeCastingDays = (currentDate) => {
       let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
       let date = currentDate.getDate() + weekDaysIndex;
       let month = months[currentDate.getMonth()];
-      
+
       return `${date} ${month}`;
-      
+
     }
-    let dateBuilder1 = (currentDate) => {
+    let dateBuilderDayOne = (currentDate) => {
       let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
       let date = currentDate.getDate();
       let month = months[currentDate.getMonth()];
-      
+
       return `${date} ${month}`;
-      
+
     }
     let printDays = (currentDate) => {
       let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-      let day = days[currentDate.getDay() + weekDaysIndex ];              
+      let day = days[currentDate.getDay() + weekDaysIndex];
       return day;
-      
+
     }
 
     fetch(`${api.base}forecast?q=${city}&appid=${api.key}&units=metric`)
       .then(
         function (response) {
-          //console.log(response);
           resultDiv.innerHTML = "";
           todayDiv.innerHTML = "";
 
@@ -59,9 +58,8 @@
             return;
           }
 
-          // Examine the text in the response
-          response.json().then( (data) => {
-                        
+          response.json().then((data) => {
+
             let divCard1 = document.createElement("div");
             divCard1.classList.add("card1");
 
@@ -73,7 +71,7 @@
 
             let date1 = document.createElement("p")
             date1.classList.add("date");
-            date1.innerHTML = dateBuilder1(now1);
+            date1.innerHTML = dateBuilderDayOne(now1);
 
             let temperature1 = document.createElement("p");
             temperature1.classList.add("temp");
@@ -95,7 +93,7 @@
 
             for (let i = 0; i < data.list.length; i += 8) {
               ++weekDaysIndex
-                           
+
               let divCard = document.createElement("div");
               divCard.classList.add("card2");
 
@@ -107,7 +105,7 @@
 
               let date = document.createElement("p")
               date.classList.add("date");
-              date.innerHTML = dateBuilder(now);
+              date.innerHTML = dateBuilderForeCastingDays(now);
 
               let temperature = document.createElement("p");
               temperature.classList.add("temp");
@@ -132,7 +130,7 @@
 
         }
       )
-      .catch( (err) => {
+      .catch((err) => {
         console.log('Fetch Error :-S', err);
       });
   })
