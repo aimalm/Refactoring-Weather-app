@@ -120,12 +120,12 @@
               icon.classList.add("icon_img");
               icon.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
 
-              resultDiv.appendChild(divCard)
+              resultDiv.appendChild(divCard);
               divCard.append(day);
-              divCard.appendChild(date)
+              divCard.appendChild(date);
               divCard.appendChild(temperature);
-              divCard.appendChild(iconDiv)
-              iconDiv.appendChild(icon)
+              divCard.appendChild(iconDiv);
+              iconDiv.appendChild(icon);
 
             }
           });
