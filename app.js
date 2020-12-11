@@ -1,9 +1,9 @@
 (function () {
   // get global variables from document
   let resultDiv = document.querySelector(".results");
-  let cityInput = document.getElementById("search_id")
+  let cityInput = document.getElementById("search_id");
   let searchButton = document.querySelector(".js-search-button");
-  let todayDiv = document.querySelector(".today_weather")
+  let todayDiv = document.querySelector(".today_weather");
   let weekDaysIndex = 0;
 
   const api = {
