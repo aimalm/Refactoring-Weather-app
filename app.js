@@ -109,30 +109,31 @@
     iconDiv.appendChild(icon);
   }
 
-  searchButton.addEventListener("click", (event) => {
-
+  const searchClicked = (event) => {
     event.preventDefault();
     let city = cityInput.value;
 
     fetch(`${api.base}forecast?q=${city}&appid=${api.key}&units=metric`)
-      .then((response) => {
-        resetResults();
+        .then((response) => {
+          resetResults();
 
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + response.status);
-          return;
-        }
+          if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' + response.status);
+            return;
+          }
 
-        return response.json();
-      }).then((data) => {
-        addToday(data);
+          return response.json();
+        }).then((data) => {
+      addToday(data);
 
-        for (let i = 0; i < data.list.length; i += 8) {
-          addDay(data, i);
-        }
-      })
-      .catch((err) => {
-        console.log('Fetch Error :-S', err);
-      });
-  })
+      for (let i = 0; i < data.list.length; i += 8) {
+        addDay(data, i);
+      }
+    })
+    .catch((err) => {
+      console.log('Fetch Error :-S', err);
+    });
+  }
+
+  searchButton.addEventListener("click", searchClicked);
 }());
