@@ -6,7 +6,7 @@
   let todayDiv = document.querySelector(".today_weather")
   let weekDaysIndex = 0;
 
-  searchButton.addEventListener("click", () => {
+  searchButton.addEventListener("click", (event) => {
 
     event.preventDefault();
 
