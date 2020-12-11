@@ -2,16 +2,13 @@
   // get global variables from document
   let resultDiv = document.querySelector(".results");
   let cityInput = document.getElementById("search_id")
-  let btn = document.querySelector(".btn");
+  let searchButton = document.querySelector(".js-search-button");
   let todayDiv = document.querySelector(".today_weather")
-
   let weekDaysIndex = 0;
 
+  searchButton.addEventListener("click", () => {
 
-  btn.addEventListener("click", () => {
-
-    event.preventDefault()
-
+    event.preventDefault();
 
     let city = cityInput.value;
 
@@ -29,6 +26,7 @@
       return `${date} ${month}`;
 
     }
+
     let dateBuilderDayOne = (currentDate) => {
       let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -38,6 +36,7 @@
       return `${date} ${month}`;
 
     }
+
     let printDays = (currentDate) => {
       let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -134,5 +133,4 @@
         console.log('Fetch Error :-S', err);
       });
   })
-
 }());
