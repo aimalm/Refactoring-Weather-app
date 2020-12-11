@@ -6,6 +6,16 @@
   let todayDiv = document.querySelector(".today_weather")
   let weekDaysIndex = 0;
 
+  const api = {
+    key: "f93f0f6ec73b9962c8732f8123da14d5",
+    base: "https://api.openweathermap.org/data/2.5/"
+  }
+
+  const resetResults = () => {
+    resultDiv.innerHTML = "";
+    todayDiv.innerHTML = "";
+  }
+
   const dateBuilderDayOne = (currentDate) => {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -102,28 +112,19 @@
   searchButton.addEventListener("click", (event) => {
 
     event.preventDefault();
-
     let city = cityInput.value;
-
-    const api = {
-      key: "f93f0f6ec73b9962c8732f8123da14d5",
-      base: "https://api.openweathermap.org/data/2.5/"
-    }
 
     fetch(`${api.base}forecast?q=${city}&appid=${api.key}&units=metric`)
       .then((response) => {
-          resultDiv.innerHTML = "";
-          todayDiv.innerHTML = "";
+        resetResults();
 
-          if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-              response.status);
-            return;
-          }
-
-          return response.json();
+        if (response.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' + response.status);
+          return;
         }
-      ).then((data) => {
+
+        return response.json();
+      }).then((data) => {
         addToday(data);
 
         for (let i = 0; i < data.list.length; i += 8) {
