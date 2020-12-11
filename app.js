@@ -111,8 +111,7 @@
     }
 
     fetch(`${api.base}forecast?q=${city}&appid=${api.key}&units=metric`)
-      .then(
-        function (response) {
+      .then((response) => {
           resultDiv.innerHTML = "";
           todayDiv.innerHTML = "";
 
@@ -122,16 +121,15 @@
             return;
           }
 
-          response.json().then((data) => {
-            addToday(data);
-
-            for (let i = 0; i < data.list.length; i += 8) {
-              addDay(data, i);
-            }
-          });
-
+          return response.json();
         }
-      )
+      ).then((data) => {
+        addToday(data);
+
+        for (let i = 0; i < data.list.length; i += 8) {
+          addDay(data, i);
+        }
+      })
       .catch((err) => {
         console.log('Fetch Error :-S', err);
       });
