@@ -5,7 +5,12 @@
   let searchButton = document.querySelector(".js-search-button");
   let todayDiv = document.querySelector(".today_weather");
   let weekDaysIndex = 0;
-  let dataArray = [];
+
+  //chart variable
+  let tempArray = [];
+  let max = 0;
+  let min = 0;
+
   const api = {
     key: "f93f0f6ec73b9962c8732f8123da14d5",
     base: "https://api.openweathermap.org/data/2.5/"
@@ -14,31 +19,54 @@
   const resetResults = () => {
     resultDiv.innerHTML = "";
     todayDiv.innerHTML = "";
-    dataArray = [];
+    tempArray = [];
+    dateArray = [];
+    
   }
+
   let createChart =  (data, i) => {
-
-    let tem = {y : Math.round(data.list[i].main.temp)}
-     
+    var ctx = document.getElementById('chartContainer').getContext('2d');
     
-    //let data = {(Math.round(data.list[i].main.temp))})
-    dataArray.push(tem)
-    console.log(dataArray)
 
-    var chart = new CanvasJS.Chart("chartContainer", {
-      animationEnabled: true,
-      theme: "light2",
-      title:{
-        text: "5 Days Forecasting"
-      },
-      data: [{        
-        type: "line",
-            indexLabelFontSize: 16,
-        dataPoints: dataArray,
-      }]
+    
+
+    let now = new Date();
+    let date = dateBuilderForeCastingDays(now);
+    dateArray.push(date);
+
+    let tem =  Math.round(data.list[i].main.temp);
+    tempArray.push(tem);
+
+    let max = Math.max(...tempArray) + 3;
+    let min = Math.min(...tempArray) - 3;
+
+      let chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [{
+              indexLabelFontSize: 16,
+
+                label: '5 Days Forecasting',
+                fill: false,
+                borderWidth: 2,
+                borderColor: 'rgb(255, 99, 132)',
+                data: tempArray
+            }],
+            labels: dateArray
+        },
+        options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      suggestedMin: min,
+                      suggestedMax: max
+                  }
+              }]
+          }
+      }
+        
+
     });
-    chart.render();
-    
     }
 
 
